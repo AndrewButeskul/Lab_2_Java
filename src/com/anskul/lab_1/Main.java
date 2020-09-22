@@ -1,12 +1,10 @@
 package com.anskul.lab_1;
 
-import javax.crypto.Cipher;
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-
 //        Circle circle = new Circle(8);
 //        iFigure cylinder = new Cylinder(circle, 5);
 
@@ -18,37 +16,37 @@ public class Main {
         circles.add(new Circle(6));
         circles.add(new Circle(8));
 
-        cylinders.add(new Cylinder(circles.get(0), 5));
-        cylinders.add(new Cylinder(circles.get(1), 22));
-        cylinders.add(new Cylinder(circles.get(2), 12));
-        cylinders.add(new Cylinder(circles.get(3), 4));
+        cylinders.add(new Cylinder(circles.get(0).getRadius(), 5));
+        cylinders.add(new Cylinder(circles.get(1).getRadius(), 22));
+        cylinders.add(new Cylinder(circles.get(2).getRadius(), 12));
+        cylinders.add(new Cylinder(circles.get(3).getRadius(), 4));
 
-        System.out.println(circles.toString());
-        System.out.println(cylinders.toString());
+        System.out.println(circles.toString().replace("[", "").replace("]", ""));
+        System.out.println(cylinders.toString().replace("[", "").replace("]", ""));
 
-        System.out.println(max_square(circles));
-        System.out.println(average_volume(cylinders));
+        System.out.println(maxSquare(circles));
+        System.out.println(averageVolume(cylinders));
     }
 
-    public static String max_square(ArrayList<Circle> circles){
-        double max = 0;
-        for (int i = 0; i < circles.size(); i++) {
-            if(circles.get(i).get_Square() > max){
-                max = circles.get(i).get_Square();
+    public static String maxSquare(final ArrayList<Circle> circles)
+    {
+        double max = circles.get(0).getSquare();
+        for (Circle circle : circles) {
+            if (circle.getSquare() > max) {
+                max = circle.getSquare();
             }
         }
         return "\nMax square of a circle: " + max;
     }
 
-    public static String average_volume(ArrayList<Cylinder> cylinders){
-        double average_volume = 0;
-        for (int i = 0; i < cylinders.size(); i++) {
-            average_volume += cylinders.get(i).get_Volume();
+    public static String averageVolume(ArrayList<Cylinder> cylinders)
+    {
+        double volume = 0;
+        for (Cylinder cylinder : cylinders) {
+            volume += cylinder.getVolume();
         }
-        average_volume /= cylinders.size();
+        volume /= cylinders.size();
 
-        return "\nAverage volume of a cylinder = " + average_volume;
+        return "\nAverage volume of a cylinder = " + volume;
     }
-    
-
 }

@@ -1,52 +1,66 @@
 package com.anskul.lab_1;
 
-public class Circle implements iFigure {
-
+/**
+ * Circle class for circle definition
+ */
+public class Circle implements IFigure
+{
     private double radius;
     private double length;
     private double square;
 
-    public Circle(double radius) {
-        setRadius(radius);
-        this.length = this.get_Length();
-        this.square = this.get_Square();
+
+    public Circle(final double radius)
+    {
+        this.setRadius(radius);
+        this.setLength();
+        this.setSquare();
     }
 
-    public Circle() {
+    public void setLength()
+    {
+        this.length = Math.round(2 * Math.PI * this.radius);
     }
 
-    @Override
-    public String toString() {
-        return "\nCircle\nRadius: " + radius + "\nLenght: " + get_Length() + "\nSquare: " + get_Square() + "\n";
+    public void setSquare()
+    {
+        this.square = Math.round(Math.PI * (Math.pow(this.radius, 2)));
     }
 
-
-    public double getRadius() {
-        return radius;
+    public double getRadius()
+    {
+        return this.radius;
     }
 
-    public void setRadius(double radius) {
-        if(radius > 0)
+    /**
+     * Calculates the radius
+     *
+     * @param radius radius of the circle
+     */
+    public void setRadius(final double radius)
+    {
+        if (radius > 0) {
             this.radius = radius;
-        else
+        }
+        else {
             this.radius = 1;
+        }
     }
 
     @Override
-    public double get_Square() {
-        return Math.round(Math.PI*(Math.pow(radius,2)));
+    public String toString()
+    {
+        return "\nCircle\nRadius: " + radius + "\nLength: " + getLength() + "\nSquare: " + getSquare() + "\n";
     }
 
-    public double get_Length() {
-        return this.length = Math.round(2 * Math.PI * radius);
+    public double getLength()
+    {
+        return length;
     }
 
-    public void setLength(double length) {
-        this.length = get_Length();
-    }
-
-    public void setSquare(double square) {
-        this.square = get_Square();
+    public double getSquare()
+    {
+        return square;
     }
 
 }
